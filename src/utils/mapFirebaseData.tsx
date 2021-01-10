@@ -12,6 +12,7 @@ export function mapFirebaseData(data: any) {
         timestamp,
         lat: data.lat,
         lng: data.lon,
+        temperature: data.windTemperature,
       };
       return newLocal;
     })
