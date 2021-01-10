@@ -77,7 +77,9 @@ function App() {
         <div className={styles.menuContent}>
           <p className={styles.dates}>
             {new Date(sliderValue).toLocaleString()}
-            {position.temperature ? ` | ${position.temperature}ºC` : null}
+            {position.temperature != null
+              ? ` | ${position.temperature}ºC`
+              : null}
           </p>
           <input
             type="range"
