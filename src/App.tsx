@@ -4,11 +4,14 @@ import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import styles from "./App.module.css";
 import "leaflet/dist/leaflet.css";
 import mock from "./mock.json";
+import differenceInDays from "date-fns/differenceInDays";
 import { CenterOnLocationChange } from "./components/CenterOnLocationChange";
 import { findIndexNearestTo } from "./utils/findIndexNearestTo";
 
 import firebase from "firebase";
 import { mapFirebaseData } from "./utils/mapFirebaseData";
+
+const DISABLE_FIREBASE = true;
 
 const firebaseConfig = {
   apiKey: "AIzaSyBThWjVqdQVhkOm-P4VwtOkK1XvoQBFjBs",
@@ -23,8 +26,10 @@ const firebaseConfig = {
 };
 
 // Use your config values here.
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+if (!DISABLE_FIREBASE) {
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+}
 
 const PatriIcon = L.icon({
   iconUrl: process.env.PUBLIC_URL + "/patri.png",
@@ -42,26 +47,33 @@ function App() {
   const position = locations[locationIndex];
 
   useEffect(() => {
-    const db = firebase.database();
-    const ref = db.ref("vessels");
+    if (!DISABLE_FIREBASE) {
+      const db = firebase.database();
+      const ref = db.ref("vessels");
 
-    const firebaseLocationsRef = ref.child("locations");
+      const firebaseLocationsRef = ref.child("locations");
 
-    firebaseLocationsRef.on(
-      "value",
-      (snapshot) => {
-        const data = snapshot.val();
+      firebaseLocationsRef.on(
+        "value",
+        (snapshot) => {
+          const data = snapshot.val();
 
-        console.log(data);
-        const locations = mapFirebaseData(data);
-        setLocations(locations);
-        setLocationIndex(locations.length - 1);
-      },
-      (errorObject: any) => {
-        console.error(errorObject);
-      }
-    );
+          console.log(data);
+          const locations = mapFirebaseData(data);
+          setLocations(locations);
+          setLocationIndex(locations.length - 1);
+        },
+        (errorObject: any) => {
+          console.error(errorObject);
+        }
+      );
+    }
   }, []);
+
+  const patriArrival = new Date(2021, 3, 10);
+  const patriDeparture = new Date(2020, 11, 22, 22, 0, 0);
+
+  const daysToPatri = differenceInDays(patriArrival, new Date());
 
   return (
     <div className={styles.map}>
@@ -95,6 +107,12 @@ function App() {
               setSliderValue(timestamp);
             }}
           />
+          <p className={styles.countDown}>Patri llega en {daysToPatri} días</p>
+          <progress
+            value={new Date().getTime() - patriDeparture.getTime()}
+            max={patriArrival.getTime() - patriDeparture.getTime()}
+            className={styles.progress}
+          ></progress>
         </div>
         <div className={styles.overlay}></div>
       </div>
