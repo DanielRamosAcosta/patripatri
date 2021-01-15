@@ -1,19 +1,13 @@
 import { Location } from "../models/Location";
 
-export function findIndexNearestTo(locations: Location[], timestamp: number) {
+export function findIndexNearestTo2(locations: Location[], timestamp: number) {
   let last = 0;
-  let lastDistance = 900000000000000;
 
   for (let i = 0; i < locations.length; i++) {
-    const currentLocation = locations[i];
-
-    const currentDist = Math.abs(currentLocation.timestamp - timestamp);
-
-    if (currentDist < lastDistance) {
-      last = i;
-      lastDistance = currentDist;
+    if (locations[i].timestamp > timestamp) {
+      return i - 1;
     }
   }
 
-  return last;
+  return locations.length - 1;
 }

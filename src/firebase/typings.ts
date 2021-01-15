@@ -11,7 +11,7 @@ export type MarineTrafficPort = {
 export type MarineTrafficLocation = {
   areaCode: string;
   areaName: string;
-  arrivalPort: MarineTrafficPort;
+  arrivalPort?: MarineTrafficPort;
   course: number;
   departurePort: MarineTrafficPort;
   draughtReported: number;

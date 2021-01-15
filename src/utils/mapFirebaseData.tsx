@@ -8,11 +8,12 @@ export function mapFirebaseData(data: any) {
 
   return rawFirebaseLocations
     .map(({ data, timestamp }) => {
-      const newLocal: Location = {
-        timestamp,
+      const newLocal = {
+        timestamp: data.lastPos * 1000,
         lat: data.lat,
         lng: data.lon,
         temperature: data.windTemperature,
+        arrivalPort: data.arrivalPort,
       };
       return newLocal;
     })
