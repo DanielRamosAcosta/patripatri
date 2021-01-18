@@ -58,8 +58,8 @@ export const portsMapInfo: PortInfo[] = [
     country: "Lituania",
     city: "Klaipėda",
     position: {
-      lat: 55.6865,
-      lng: 21.132,
+      lat: 55.714,
+      lng: 21.11567,
     },
   },
 ];
