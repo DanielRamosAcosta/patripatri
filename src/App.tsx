@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import L, { LatLngLiteral } from "leaflet";
 import { MapContainer, TileLayer, Marker, Polyline } from "react-leaflet";
 import styles from "./App.module.css";
@@ -48,6 +48,9 @@ const DestinationIcon = L.icon({
 
 const cachedLocations = mapFirebaseData(mock);
 
+const db = firebase.firestore();
+const locationsCollection = db.collection("locations");
+
 function App() {
   const [locations, setLocations] = useState(cachedLocations);
   const [currentPosition, setCurrentPosition] = useState(
@@ -57,26 +60,30 @@ function App() {
 
   useEffect(() => {
     if (!DISABLE_FIREBASE) {
-      const db = firebase.database();
-      const ref = db.ref("vessels");
+      const lastLocation = locations[locations.length - 1];
 
-      const firebaseLocationsRef = ref.child("locations");
+      locationsCollection
+        .orderBy("timestamp")
+        .where("timestamp", ">", lastLocation.timestamp)
+        .onSnapshot((snapshot) => {
+          console.log("ON SNAPSHOT");
+          const lastOldLocation = locations[locations.length - 1];
 
-      firebaseLocationsRef.on(
-        "value",
-        (snapshot) => {
-          const data = snapshot.val();
+          console.log("last old location", lastOldLocation.timestamp);
+          const newerLocations = mapFirebaseData(
+            snapshot.docs.map((el) => el.data())
+          ).filter((e) => e.timestamp > lastOldLocation.timestamp);
 
-          console.log(data);
-          const locations = mapFirebaseData(data);
-          setLocations(locations);
-          const lastLocation = locations[locations.length - 1];
+          console.log({
+            newerLocations: JSON.parse(JSON.stringify(newerLocations)),
+          });
+
+          const allLocations = locations.concat(newerLocations);
+          const lastLocation = allLocations[allLocations.length - 1];
+
+          setLocations(allLocations);
           setCurrentPosition(lastLocation);
-        },
-        (errorObject: any) => {
-          console.error(errorObject);
-        }
-      );
+        });
     }
   }, []);
 

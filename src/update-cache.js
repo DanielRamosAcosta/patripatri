@@ -16,20 +16,16 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.database();
-const ref = db.ref("vessels");
+const db = firebase.firestore();
+const locationsCollection = db.collection("locations");
 
-const firebaseLocationsRef = ref.child("locations");
-
-firebaseLocationsRef.on(
-  "value",
-  (snapshot) => {
-    const data = snapshot.val();
+locationsCollection
+  .orderBy("timestamp")
+  .get()
+  .then((snapshot) => {
+    const data = snapshot.docs.map((el) => el.data());
 
     fs.writeFileSync(path.join(__dirname, "mock.json"), JSON.stringify(data));
+
     process.exit(0);
-  },
-  (errorObject) => {
-    console.error(errorObject);
-  }
-);
+  });
