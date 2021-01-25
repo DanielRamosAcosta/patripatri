@@ -1,13 +1,15 @@
 import { LatLngLiteral } from "leaflet";
 
+const VERY_NEAR_EPSILON = 0.02;
+
 export function portIsTooClose(
-  currentPostion: LatLngLiteral,
-  portPosition: LatLngLiteral,
+  currentPosition: LatLngLiteral,
+  portPosition: LatLngLiteral
 ) {
-  const a = currentPostion.lat - portPosition.lat;
-  const b = currentPostion.lng - portPosition.lng;
+  const a = currentPosition.lat - portPosition.lat;
+  const b = currentPosition.lng - portPosition.lng;
 
-  const c = Math.sqrt(a * a + b * b);
+  const distance = Math.sqrt(a * a + b * b);
 
-  return c < 0.02;
+  return distance < VERY_NEAR_EPSILON;
 }
