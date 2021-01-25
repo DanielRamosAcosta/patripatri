@@ -12,22 +12,15 @@ describe("estimateCoordinatesAtTime works when going", () => {
     };
 
     const p2: PositionAtTime = {
-      lat: 2,
-      lng: 0,
+      lat: 0,
+      lng: 2,
       timestamp: 2000,
     };
 
-    const estimation = estimateCoordinatesAtTime(p1, p2, 1500);
+    const result = estimateCoordinatesAtTime(p1, p2, 1500);
 
-    console.log("estimation", estimation);
-
-    const result = {
-      lat: estimation.x,
-      lng: estimation.y,
-    };
-
-    expect(result.lat).toBeAround(1);
-    expect(result.lng).toBeAround(0);
+    expect(result.lat).toBeAround(0);
+    expect(result.lng).toBeAround(1);
   });
 
   it("north east", () => {
@@ -43,12 +36,7 @@ describe("estimateCoordinatesAtTime works when going", () => {
       timestamp: 2000,
     };
 
-    const estimation = estimateCoordinatesAtTime(p1, p2, 1500);
-
-    const result = {
-      lat: estimation.x,
-      lng: estimation.y,
-    };
+    const result = estimateCoordinatesAtTime(p1, p2, 1500);
 
     expect(result.lat).toBeAround(1);
     expect(result.lng).toBeAround(1);
@@ -62,22 +50,15 @@ describe("estimateCoordinatesAtTime works when going", () => {
     };
 
     const p2: PositionAtTime = {
-      lat: 0,
-      lng: 2,
+      lat: 2,
+      lng: 0,
       timestamp: 2000,
     };
 
-    const estimation = estimateCoordinatesAtTime(p1, p2, 1500);
+    const result = estimateCoordinatesAtTime(p1, p2, 1500);
 
-    console.log("estimation", estimation);
-
-    const result = {
-      lat: estimation.x,
-      lng: estimation.y,
-    };
-
-    expect(result.lat).toBeAround(0);
-    expect(result.lng).toBeAround(1);
+    expect(result.lat).toBeAround(1);
+    expect(result.lng).toBeAround(0);
   });
 
   it("south east", () => {
@@ -88,20 +69,15 @@ describe("estimateCoordinatesAtTime works when going", () => {
     };
 
     const p2: PositionAtTime = {
-      lat: -2,
-      lng: 2,
+      lat: 2,
+      lng: -2,
       timestamp: 2000,
     };
 
-    const estimation = estimateCoordinatesAtTime(p1, p2, 1500);
+    const result = estimateCoordinatesAtTime(p1, p2, 1500);
 
-    const result = {
-      lat: estimation.x,
-      lng: estimation.y,
-    };
-
-    expect(result.lat).toBeAround(-1);
-    expect(result.lng).toBeAround(1);
+    expect(result.lat).toBeAround(1);
+    expect(result.lng).toBeAround(-1);
   });
 
   it("south", () => {
@@ -112,20 +88,15 @@ describe("estimateCoordinatesAtTime works when going", () => {
     };
 
     const p2: PositionAtTime = {
-      lat: -2,
-      lng: 0,
+      lat: 0,
+      lng: -2,
       timestamp: 2000,
     };
 
-    const estimation = estimateCoordinatesAtTime(p1, p2, 1500);
+    const result = estimateCoordinatesAtTime(p1, p2, 1500);
 
-    const result = {
-      lat: estimation.x,
-      lng: estimation.y,
-    };
-
-    expect(result.lat).toBeAround(-1);
-    expect(result.lng).toBeAround(0);
+    expect(result.lat).toBeAround(0);
+    expect(result.lng).toBeAround(-1);
   });
 
   it("south west", () => {
@@ -141,15 +112,29 @@ describe("estimateCoordinatesAtTime works when going", () => {
       timestamp: 2000,
     };
 
-    const estimation = estimateCoordinatesAtTime(p1, p2, 1500);
-
-    const result = {
-      lat: estimation.x,
-      lng: estimation.y,
-    };
+    const result = estimateCoordinatesAtTime(p1, p2, 1500);
 
     expect(result.lat).toBeAround(-1);
     expect(result.lng).toBeAround(-1);
+  });
+
+  it("west", () => {
+    const p1: PositionAtTime = {
+      lat: 0,
+      lng: 0,
+      timestamp: 1000,
+    };
+
+    const p2: PositionAtTime = {
+      lat: -2,
+      lng: 0,
+      timestamp: 2000,
+    };
+
+    const result = estimateCoordinatesAtTime(p1, p2, 1500);
+
+    expect(result.lat).toBeAround(-1);
+    expect(result.lng).toBeAround(0);
   });
 
   it("north west", () => {
@@ -160,19 +145,33 @@ describe("estimateCoordinatesAtTime works when going", () => {
     };
 
     const p2: PositionAtTime = {
-      lat: 2,
-      lng: -2,
+      lat: -2,
+      lng: 2,
       timestamp: 2000,
     };
 
-    const estimation = estimateCoordinatesAtTime(p1, p2, 1500);
+    const result = estimateCoordinatesAtTime(p1, p2, 1500);
 
-    const result = {
-      lat: estimation.x,
-      lng: estimation.y,
+    expect(result.lat).toBeAround(-1);
+    expect(result.lng).toBeAround(1);
+  });
+
+  it("not move at all", () => {
+    const p1: PositionAtTime = {
+      lat: 0,
+      lng: 0,
+      timestamp: 1000,
     };
 
-    expect(result.lat).toBeAround(1);
-    expect(result.lng).toBeAround(-1);
+    const p2: PositionAtTime = {
+      lat: 0,
+      lng: 0,
+      timestamp: 2000,
+    };
+
+    const result = estimateCoordinatesAtTime(p1, p2, 1500);
+
+    expect(result.lat).toBeAround(0);
+    expect(result.lng).toBeAround(0);
   });
 });

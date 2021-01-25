@@ -5,7 +5,7 @@ import styles from "./App.module.css";
 import "leaflet/dist/leaflet.css";
 import differenceInDays from "date-fns/differenceInDays";
 import { CenterOnLocationChange } from "./components/CenterOnLocationChange";
-import { findIndexNearestTo } from "./utils/findIndexNearestTo";
+import { findBoundingPointsForTimestamp } from "./utils/findIndexNearestTo";
 import { portsMapInfo } from "./utils/portsMapInfo";
 import { portIsTooClose } from "./utils/portIsTooClose";
 import { usePatriLocations } from "./hooks/usePatriLocations";
@@ -36,28 +36,6 @@ function App() {
   const patriDeparture = new Date(2020, 11, 22, 22, 0, 0);
 
   const daysToPatri = differenceInDays(patriArrival, new Date());
-
-  function foo(timestamp: number) {
-    setSliderValue(timestamp);
-    const index = findIndexNearestTo(locations, timestamp);
-    const p1 = locations[index];
-    const p2 = locations[index + 1];
-
-    if (!p2) {
-      setCurrentPosition(p1);
-      return;
-    }
-
-    const { x, y } = estimateCoordinatesAtTime(p2, p1, timestamp);
-
-    setCurrentPosition({
-      ...p1,
-      lat: x,
-      lng: y,
-      temperature: ((p1.temperature || 0) + (p2.temperature || 0)) / 2,
-    });
-    setSliderValue(timestamp);
-  }
 
   const filteredPolylinesLocations: LatLngLiteral[] = locations.filter(
     (e) => e.timestamp <= sliderValue
@@ -109,8 +87,15 @@ function App() {
             value={sliderValue}
             onChange={(e) => {
               const timestamp = parseInt(e.target.value);
+              const { p1, p2 } = findBoundingPointsForTimestamp(
+                locations,
+                timestamp
+              );
 
-              foo(timestamp);
+              const { lat, lng } = estimateCoordinatesAtTime(p2, p1, timestamp);
+
+              setCurrentPosition({ ...p1, lat, lng });
+              setSliderValue(timestamp);
             }}
           />
           <p className={styles.countDown}>Patri llega en {daysToPatri} días</p>

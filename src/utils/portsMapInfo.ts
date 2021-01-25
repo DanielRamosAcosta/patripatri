@@ -62,4 +62,13 @@ export const portsMapInfo: PortInfo[] = [
       lng: 21.11567,
     },
   },
+  {
+    id: "251",
+    country: "Irlanda",
+    city: "Greenore",
+    position: {
+      lat: 54.034677,
+      lng: -6.133334,
+    },
+  },
 ];
