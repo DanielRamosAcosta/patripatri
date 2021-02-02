@@ -1,5 +1,3 @@
-import { Location } from "../models/Location";
-
 function binarySearch<T extends { timestamp: number }>(
   locations: T[],
   timestamp: number

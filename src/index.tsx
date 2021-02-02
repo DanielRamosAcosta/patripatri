@@ -1,15 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { RepositoriesContext } from "./hooks/useRepositories";
+import { RepositoriesImpl } from "./repositories/RepositoriesImpl";
 
+const repositories = new RepositoriesImpl();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RepositoriesContext.Provider value={repositories}>
+      <App />
+    </RepositoriesContext.Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

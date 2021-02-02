@@ -1,112 +1,78 @@
 import React, { useEffect, useState } from "react";
-import L, { LatLngLiteral } from "leaflet";
-import { MapContainer, Marker, Polyline, TileLayer } from "react-leaflet";
 import styles from "./App.module.css";
 import "leaflet/dist/leaflet.css";
 import differenceInDays from "date-fns/differenceInDays";
-import { CenterOnLocationChange } from "./components/CenterOnLocationChange";
-import { findBoundingPointsForTimestamp } from "./utils/findIndexNearestTo";
 import { portsMapInfo } from "./utils/portsMapInfo";
-import { portIsTooClose } from "./utils/portIsTooClose";
-import { usePatriLocations } from "./hooks/usePatriLocations";
-import { estimateCoordinatesAtTime } from "./utils/estimateCoordinatesAtTime";
+import { useTimeSnapshots } from "./hooks/useTimeSnapshots";
+import { timeSnapshotEstimateAtTime } from "./models/TimeSnapshot";
+import {
+  timeSnapshotsBefore,
+  timeSnapshotsFindBoundingSnapshotsForTimestamp,
+  timeSnapshotsGetPositions,
+} from "./models/TimeSnapshots";
+import { PatriMap } from "./components/PatriMap";
+import { BottomMenu } from "./components/BottomMenu";
 
-const PatriIcon = L.icon({
-  iconUrl: process.env.PUBLIC_URL + "/patri.png",
-  iconSize: [40, 40],
-  iconAnchor: [20, 20],
-});
-
-const DestinationIcon = L.icon({
-  iconUrl: process.env.PUBLIC_URL + "/tracking.png",
-  iconSize: [32, 32],
-  iconAnchor: [16, 16],
-});
+const PATRI_ARRIVAL_DATE = new Date(2021, 3, 10);
+const PATRI_DEPARTURE_DATE = new Date(2020, 11, 22, 22, 0, 0);
+const DATS_TO_PATRI = differenceInDays(PATRI_ARRIVAL_DATE, new Date());
 
 function App() {
-  const { locations, lastLocation } = usePatriLocations();
-  const [currentPosition, setCurrentPosition] = useState(lastLocation);
-  const [sliderValue, setSliderValue] = useState(Date.now());
+  const { timeSnapshots, lastTimeSnapshot } = useTimeSnapshots();
+  const [currentTimeSnapshot, setCurrentTimeSnapshot] = useState(
+    lastTimeSnapshot
+  );
 
   useEffect(() => {
-    setCurrentPosition(lastLocation);
-  }, [lastLocation]);
+    setCurrentTimeSnapshot(lastTimeSnapshot);
+  }, [lastTimeSnapshot]);
 
-  const patriArrival = new Date(2021, 3, 10);
-  const patriDeparture = new Date(2020, 11, 22, 22, 0, 0);
+  if (!currentTimeSnapshot) {
+    return (
+      <div>
+        <p>Cargando...</p>
+      </div>
+    );
+  }
 
-  const daysToPatri = differenceInDays(patriArrival, new Date());
-
-  const filteredPolylinesLocations: LatLngLiteral[] = locations.filter(
-    (e) => e.timestamp <= sliderValue
+  const filteredTimeSnapshots = timeSnapshotsBefore(
+    timeSnapshots,
+    new Date(currentTimeSnapshot.timestamp)
   );
-  const polyLinePositions = filteredPolylinesLocations.concat({
-    lat: currentPosition.lat,
-    lng: currentPosition.lng,
-  });
-
-  console.log(currentPosition);
+  const polyLinePositions = timeSnapshotsGetPositions(filteredTimeSnapshots);
 
   const nextPort = portsMapInfo.find(
-    (port) => port.id === currentPosition.arrivalPort?.id
+    (port) => port.id === currentTimeSnapshot.arrivalPortId
   );
-  const nextPortLocationPosition = nextPort?.position;
 
   return (
     <div className={styles.map}>
-      <MapContainer center={currentPosition} zoom={8}>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={currentPosition} icon={PatriIcon} />
-        {nextPortLocationPosition &&
-        !portIsTooClose(currentPosition, nextPortLocationPosition) ? (
-          <Marker position={nextPortLocationPosition} icon={DestinationIcon} />
-        ) : null}
-        <CenterOnLocationChange
-          lat={currentPosition.lat}
-          lng={currentPosition.lng}
-        />
-        <Polyline positions={polyLinePositions} />
-      </MapContainer>
-      <div className={styles.bottomMenu}>
-        <div className={styles.menuContent}>
-          <p className={styles.dates}>
-            {new Date(sliderValue).toLocaleString()}
-            {currentPosition.temperature != null
-              ? ` | ${currentPosition.temperature}ºC`
-              : null}
-            {" | "}
-            {nextPort ? `${nextPort.city} (${nextPort.country})` : null}
-          </p>
-          <input
-            type="range"
-            min={1608802672283}
-            max={Date.now()}
-            value={sliderValue}
-            onChange={(e) => {
-              const timestamp = parseInt(e.target.value);
-              const { p1, p2 } = findBoundingPointsForTimestamp(
-                locations,
-                timestamp
-              );
+      <PatriMap
+        currentPosition={currentTimeSnapshot.position}
+        nextPortPosition={nextPort?.position}
+        positions={polyLinePositions}
+      />
+      <BottomMenu
+        currentPosition={currentTimeSnapshot}
+        nextPort={nextPort}
+        onChange={(timestamp) => {
+          const bounds = timeSnapshotsFindBoundingSnapshotsForTimestamp(
+            timeSnapshots,
+            new Date(timestamp)
+          );
 
-              const { lat, lng } = estimateCoordinatesAtTime(p2, p1, timestamp);
+          const snapshot = timeSnapshotEstimateAtTime(
+            bounds.left,
+            bounds.right,
+            new Date(timestamp)
+          );
 
-              setCurrentPosition({ ...p1, lat, lng });
-              setSliderValue(timestamp);
-            }}
-          />
-          <p className={styles.countDown}>Patri llega en {daysToPatri} días</p>
-          <progress
-            value={new Date().getTime() - patriDeparture.getTime()}
-            max={patriArrival.getTime() - patriDeparture.getTime()}
-            className={styles.progress}
-          />
-        </div>
-        <div className={styles.overlay} />
-      </div>
+          setCurrentTimeSnapshot(snapshot);
+        }}
+        daysToPatri={DATS_TO_PATRI}
+        patriDeparture={PATRI_DEPARTURE_DATE}
+        patriArrival={PATRI_ARRIVAL_DATE}
+      />
     </div>
   );
 }

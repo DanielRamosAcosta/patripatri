@@ -25,7 +25,12 @@ locationsCollection
   .then((snapshot) => {
     const data = snapshot.docs.map((el) => el.data());
 
-    fs.writeFileSync(path.join(__dirname, "mock.json"), JSON.stringify(data));
+    const withoutNoise = data.slice(10, data.length);
+
+    fs.writeFileSync(
+      path.join(__dirname, "repositories/time-snapshot-cache.json"),
+      JSON.stringify(withoutNoise)
+    );
 
     process.exit(0);
   });
