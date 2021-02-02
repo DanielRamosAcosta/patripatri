@@ -26,12 +26,10 @@ function calculateSpeed(p1: PositionAtTime, p2: PositionAtTime) {
   const b = p2.lat - p1.lat;
   const a = p2.lng - p1.lng;
 
-  const hip = Math.sqrt(Math.pow(b, 2) + Math.pow(a, 2));
+  const distance = Math.sqrt(Math.pow(b, 2) + Math.pow(a, 2));
   const timeTookDistance = p2.timestamp - p1.timestamp;
 
-  const speed = hip / timeTookDistance;
-
-  return speed;
+  return distance / timeTookDistance;
 }
 
 function calculateAngle(p1: PositionAtTime, p2: PositionAtTime) {

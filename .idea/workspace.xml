@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d483724e-7b49-4a5e-b5b6-cf5857dee816" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/config/firebase.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/firebase/firebase.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/usePatriLocations.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/estimateCoordinatesAtTime.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/estimateCoordinatesAtTime.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/findIndexNearestTo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/findIndexNearestTo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/mapFirebaseData.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/mapFirebaseData.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/portIsTooClose.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/portIsTooClose.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/estimateCoordinatesAtTime.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/estimateCoordinatesAtTime.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +139,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611526164952</updated>
-      <workItem from="1611526168874" duration="5503000" />
+      <workItem from="1611526168874" duration="5608000" />
+      <workItem from="1611767922399" duration="16000" />
+      <workItem from="1612289401283" duration="81000" />
     </task>
     <servers />
   </component>
@@ -165,6 +158,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
