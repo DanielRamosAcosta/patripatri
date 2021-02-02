@@ -71,4 +71,22 @@ export const portsMapInfo: PortInfo[] = [
       lng: -6.133334,
     },
   },
+  {
+    id: "21652",
+    country: "Irlanda",
+    city: "Ringaskiddy",
+    position: {
+      lat: 51.83541,
+      lng: -8.330348,
+    },
+  },
+  {
+    id: "2036",
+    country: "Países Bajos",
+    city: "Róterdam",
+    position: {
+      lat: 51.943305,
+      lng: 4.141812,
+    },
+  },
 ];
