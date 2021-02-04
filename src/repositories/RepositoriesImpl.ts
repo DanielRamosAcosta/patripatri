@@ -1,6 +1,5 @@
 import { mapFirebaseData2 } from "../utils/mapFirebaseData";
 import { Repositories } from "./Repositories";
-import timeSnapshotCache from "./time-snapshot-cache.json";
 import { firebase, FirebaseCollection } from "../firebase/firebase";
 import { TimeSnapshot } from "../models/TimeSnapshot";
 

@@ -5,30 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d483724e-7b49-4a5e-b5b6-cf5857dee816" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/BottomMenu.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/BottomMenu.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PatriMap.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PatriMap.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/useRepositories.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/useTimeSnapshots.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/MyPosition.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Positions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/TimeSnapshot.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/TimeSnapshots.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repositories/Repositories.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repositories/RepositoriesFake.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repositories/RepositoriesImpl.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/cleanTimeSnapshot.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/cleanTimeSnapshot.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/patripatri.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/patripatri.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/firebase.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/firebase/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/firebase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/usePatriLocations.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Location.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/update-cache.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/update-cache.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/findIndexNearestTo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/findIndexNearestTo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/mapFirebaseData.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/mapFirebaseData.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useTimeSnapshots.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useTimeSnapshots.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/RepositoriesImpl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/RepositoriesImpl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/findIndexNearestTo.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/findIndexNearestTo.test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="CSS File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -67,6 +52,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -81,8 +67,8 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="$USER_HOME$/.config/yarn/global/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Less" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$USER_HOME$/.fnm/node-versions/v14.15.1/installation/lib/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -102,45 +88,59 @@
       <recent name="$PROJECT_DIR$/src/repositories/RepositoriesImpl.ts" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.estimateCoordinatesAtTime works when going">
-    <configuration name="estimateCoordinatesAtTime works when going" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.findIndexNearestTo">
+    <configuration name="findIndexNearestTo" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/utils/estimateCoordinatesAtTime.test.ts" />
+      <test-file value="$PROJECT_DIR$/src/utils/cleanTimeSnapshot.test.ts" />
       <test-names>
-        <test-name value="estimateCoordinatesAtTime works when going" />
+        <test-name value="findIndexNearestTo" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="estimateCoordinatesAtTime works when going.east" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="findIndexNearestTo.does nothing if already sorted" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/utils/estimateCoordinatesAtTime.test.ts" />
+      <test-file value="$PROJECT_DIR$/src/utils/cleanTimeSnapshot.test.ts" />
       <test-names>
-        <test-name value="estimateCoordinatesAtTime works when going" />
-        <test-name value="east" />
+        <test-name value="findIndexNearestTo" />
+        <test-name value="does nothing if already sorted" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="estimateCoordinatesAtTime works when going.north" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="findIndexNearestTo.remove duplicates" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/utils/estimateCoordinatesAtTime.test.ts" />
+      <test-file value="$PROJECT_DIR$/src/utils/cleanTimeSnapshot.test.ts" />
       <test-names>
-        <test-name value="estimateCoordinatesAtTime works when going" />
-        <test-name value="north" />
+        <test-name value="findIndexNearestTo" />
+        <test-name value="remove duplicates" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="findIndexNearestTo.sorts by timestamp" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/utils/cleanTimeSnapshot.test.ts" />
+      <test-names>
+        <test-name value="findIndexNearestTo" />
+        <test-name value="sorts by timestamp" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -154,23 +154,13 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="update-cache" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="update-cache" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.update-cache" />
+        <item itemvalue="Jest.findIndexNearestTo" />
+        <item itemvalue="Jest.findIndexNearestTo.remove duplicates" />
+        <item itemvalue="Jest.findIndexNearestTo.sorts by timestamp" />
+        <item itemvalue="Jest.findIndexNearestTo.does nothing if already sorted" />
         <item itemvalue="npm.start" />
-        <item itemvalue="Jest.estimateCoordinatesAtTime works when going" />
-        <item itemvalue="Jest.estimateCoordinatesAtTime works when going.east" />
-        <item itemvalue="Jest.estimateCoordinatesAtTime works when going.north" />
       </list>
     </recent_temporary>
   </component>
@@ -184,7 +174,8 @@
       <updated>1611526164952</updated>
       <workItem from="1611526168874" duration="5608000" />
       <workItem from="1611767922399" duration="16000" />
-      <workItem from="1612289401283" duration="13397000" />
+      <workItem from="1612289401283" duration="15106000" />
+      <workItem from="1612477137799" duration="2437000" />
     </task>
     <servers />
   </component>
@@ -202,6 +193,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,5 +1,5 @@
 import { findIndexNearestTo } from "./findIndexNearestTo";
-import mock from "../mock.json";
+import mock from "../repositories/time-snapshot-cache.json";
 import { mapFirebaseData } from "./mapFirebaseData";
 
 const locations = mapFirebaseData(mock);

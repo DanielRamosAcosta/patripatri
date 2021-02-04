@@ -1,5 +1,3 @@
-export const DISABLE_FIREBASE = true;
-
 export const firebaseConfig = {
   apiKey: "AIzaSyBThWjVqdQVhkOm-P4VwtOkK1XvoQBFjBs",
   authDomain: "patri-chaser.firebaseapp.com",
