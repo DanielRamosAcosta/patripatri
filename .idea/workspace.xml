@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d483724e-7b49-4a5e-b5b6-cf5857dee816" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/cleanTimeSnapshot.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/cleanTimeSnapshot.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/patripatri.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/patripatri.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/firebase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/firebase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/useTimeSnapshots.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useTimeSnapshots.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/RepositoriesImpl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/RepositoriesImpl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/findIndexNearestTo.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/findIndexNearestTo.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/portsMapInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/portsMapInfo.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +34,32 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1613499451" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="refactor-estimation" />
+                    <option name="lastUsedInstant" value="1613499450" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="e625i658" />
@@ -156,11 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="Jest.findIndexNearestTo" />
         <item itemvalue="Jest.findIndexNearestTo.remove duplicates" />
         <item itemvalue="Jest.findIndexNearestTo.sorts by timestamp" />
         <item itemvalue="Jest.findIndexNearestTo.does nothing if already sorted" />
-        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>

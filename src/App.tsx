@@ -45,6 +45,8 @@ function App() {
     (port) => port.id === currentTimeSnapshot.arrivalPortId
   );
 
+  console.log("NEXT PORT", currentTimeSnapshot)
+
   return (
     <div className={styles.map}>
       <PatriMap

@@ -85,8 +85,44 @@ export const portsMapInfo: PortInfo[] = [
     country: "Países Bajos",
     city: "Róterdam",
     position: {
-      lat: 51.943305,
-      lng: 4.141812,
+      lat: 51.90404732155975,
+      lng: 4.356333,
+    },
+  },
+  {
+    id: "2104",
+    country: "Países Bajos",
+    city: "Vlaardingen",
+    position: {
+      lat: 51.90404732155975,
+      lng: 4.356333,
+    },
+  },
+  {
+    id: "502",
+    country: "Francia",
+    city: "Lorient",
+    position: {
+      lat: 47.734040,
+      lng: -3.362030,
+    },
+  },
+  {
+    id: "89",
+    country: "Francia",
+    city: "Nantes",
+    position: {
+      lat: 47.213910,
+      lng: -1.541655,
+    },
+  },
+  {
+    id: "122",
+    country: "Bélgica",
+    city: "Ghent",
+    position: {
+      lat: 51.119525,
+      lng: 3.766277,
     },
   },
 ];

@@ -12,7 +12,7 @@ export function useTimeSnapshots(): {
   const defaultValue = localCache ? JSON.parse(localCache) : [];
 
   const [timeSnapshots, setTimeSnapshots] = useState<TimeSnapshots>(
-    defaultValue
+      defaultValue
   );
   const [
     timeSnapshotsFromListener,
@@ -21,20 +21,13 @@ export function useTimeSnapshots(): {
   const { repositories } = useRepositories();
 
   useEffect(() => {
-    const last = timeSnapshots[timeSnapshots.length - 1];
-    const newer = timeSnapshotsFromListener.filter(
-      (el) => el.timestamp > last.timestamp
-    );
-
-    console.log({ newer });
-
-    setTimeSnapshots([...timeSnapshots, ...newer]);
+    setTimeSnapshots(cleanTimeSnapshots([...timeSnapshots, ...timeSnapshotsFromListener]));
   }, [timeSnapshotsFromListener]);
 
   useEffect(() => {
     async function effect() {
       let timeSnapshots: TimeSnapshot[] = defaultValue;
-      console.log("asking getLastTimeSnapshot");
+      console.log("asking getLastTimeSnapsho");
       const lastTimeSnapshot = await repositories.getLastTimeSnapshot();
       timeSnapshots = cleanTimeSnapshots([...timeSnapshots, lastTimeSnapshot]);
       setTimeSnapshots(timeSnapshots);
@@ -48,8 +41,12 @@ export function useTimeSnapshots(): {
 
       console.log("asking subscribeToNewerLocations");
       repositories.subscribeToNewerLocations(
-        new Date(timeSnapshots[timeSnapshots.length - 1].timestamp),
-        setTimeSnapshotsFromListener
+        new Date(cachedTimeSnapshots[cachedTimeSnapshots.length - 1].timestamp),
+          locations => {
+            console.log("Locations after", new Date(cachedTimeSnapshots[cachedTimeSnapshots.length - 1].timestamp))
+            console.log(locations)
+            setTimeSnapshotsFromListener(locations)
+          }
       );
     }
 
